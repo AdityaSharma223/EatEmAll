@@ -110,8 +110,6 @@ while run:
 	# Checking if the small blob has been consumed or not 
 	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
 		s += 10
-		# radius += 1
-		# r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 		tx, ty = random.randrange(20, 181, 10), random.randrange(20, 181, 10) # Generating random coordinates for the small blob 
 		pygame.display.update()
 
@@ -132,5 +130,3 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
-
-# ritamraj@gmail.com
