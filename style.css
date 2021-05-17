@@ -3,14 +3,14 @@
 body {
   margin: 0;
   padding: 0;
-  background: #FFC300;
+  background: #000000;
 	font-family: ubuntu;
 }
 
 header {
   display: flex;
   align-items: center;
-  background: #900C3F;
+  background: #fafafa;
 }
 
 header img {
@@ -22,7 +22,7 @@ header img {
 
 article {
   background: #DAF7A6 ;
-  border: 5px solid #900C3F;
+  border: 5px solid #fafafa;
   width: 90%;
   margin: 20px auto;
   border-radius: 10px;
