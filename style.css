@@ -21,8 +21,8 @@ header img {
 }
 
 article {
-  background: #3BB280;
-  border: 5px solid #fafafa;
+  background: #fafafa;
+  border: 5px solid #a0a0a0;
   width: 90%;
   margin: 20px auto;
   border-radius: 10px;
@@ -30,5 +30,5 @@ article {
 }
 
 hr, article .date {
-  color: #a0a0a0;
+  color: #000000;
 }
