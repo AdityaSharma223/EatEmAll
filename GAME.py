@@ -53,7 +53,7 @@ try :
 		su = i 
 	for i in count:
 		c = i 
-	avg = su // i 
+	avg = su // c # change with (avg = su // i) if error occurs 
 except :  # <--- If the table is empty 
 	avg = 0 
 #------------------------------------------------
