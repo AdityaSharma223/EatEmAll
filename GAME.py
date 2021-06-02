@@ -32,11 +32,11 @@ db = mysql.connector.connect(host="localhost",
 		database="game" # <----- HERE  
 	)
 cursor = db.cursor()
-'''
-Run this if the table named "scores" has not been created in your
-database already. 
-'''
-# cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+
+try: 
+	cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+except: 
+	except_temp = 0 
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
