@@ -10,7 +10,7 @@ pip install pygame
 pip install mysql-connector-python
 ```
 3. ### IMPORTANT 
-   Having the correct host, user, passwd, database and table for MySQL (further help in the game file) 
+   Having the correct host, user, passwd and database for MySQL (further help in the game file) 
  
 ## SUMMARY: 
 Find and eat the enegry balls to gain score! 
