@@ -21,17 +21,28 @@ tr, tg, tb = 0, 0, 0
 can = 0 
 #---------------------------------
 
+#--------ASKING_PASSWORD----------
+
+password=input("Please enter the password for the root user: ") 
+
+#---------------------------------
+
 #------------SQL_CONNECTION-------
-'''
-Please write the name of a database already present in your device or create a
-database named "game" before running
-'''
-db = mysql.connector.connect(host="localhost",
-		user="root",
-		passwd="adupadu",
-		database="game" # <----- HERE  
-	)
-cursor = db.cursor()
+try: 
+    db = mysql.connector.connect(host="localhost",
+            user="root",
+            passwd="{}".format(password),
+            database="game"
+            )
+    cursor = db.cursor()
+except: 
+    db = mysel.connector.connect(host="localhost",
+            user="root",
+            passwd="{}".format(password)
+            )
+    cursor = db.cursor() 
+    cursor.execute("CREATE DATABASE game")
+    cursor.execute("USE game") 
 
 try: 
 	cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
