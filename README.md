@@ -20,6 +20,6 @@ You can press space to reveal the location of the
 energy ball. (applicable only upto two times per game) 
 
 ## CONTROLS: 
-⬅️ ⬆️ ⬇️ ➡️ -> Arrow keys for movement 
+⬅️ ⬆️ ⬇️ ➡️ --> Arrow keys for movement 
 
-SPACE BAR -> Space bar to use special move 
+SPACE BAR --> Space bar to use special move 
