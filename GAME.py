@@ -28,6 +28,8 @@ password=input("Please enter the password for the root user: ")
 #---------------------------------
 
 #------------SQL_CONNECTION-------
+
+# trying to connect to an existing database named "game" basically for an existing user 
 try: 
     db = mysql.connector.connect(host="localhost",
             user="root",
@@ -35,6 +37,12 @@ try:
             database="game"
             )
     cursor = db.cursor()
+    try: # tries to create a table score if not already present 
+        cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+    except: 
+        except_temp = 0 
+
+# if no database named "game" is present then it makes one. basically for a new user 
 except: 
     db = mysel.connector.connect(host="localhost",
             user="root",
@@ -43,11 +51,8 @@ except:
     cursor = db.cursor() 
     cursor.execute("CREATE DATABASE game")
     cursor.execute("USE game") 
+    cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
 
-try: 
-	cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
-except: 
-	except_temp = 0 
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
