@@ -21,22 +21,38 @@ tr, tg, tb = 0, 0, 0
 can = 0 
 #---------------------------------
 
-#------------SQL_CONNECTION-------
-'''
-Please write the name of a database already present in your device or create a
-database named "game" before running
-'''
-db = mysql.connector.connect(host="localhost",
-		user="root",
-		passwd="adupadu",
-		database="game" # <----- HERE  
-	)
-cursor = db.cursor()
+#--------ASKING_PASSWORD----------
 
+password=input("Please enter the password for the root user: ") 
+
+#---------------------------------
+
+#------------SQL_CONNECTION-------
+
+# trying to connect to an existing database named "game" basically for an existing user 
 try: 
-	cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+    db = mysql.connector.connect(host="localhost",
+            user="root",
+            passwd="{}".format(password),
+            database="game"
+            )
+    cursor = db.cursor()
+    try: # tries to create a table score if not already present 
+        cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+    except: 
+        except_temp = 0 
+
+# if no database named "game" is present then it makes one. basically for a new user 
 except: 
-	except_temp = 0 
+    db = mysel.connector.connect(host="localhost",
+            user="root",
+            passwd="{}".format(password)
+            )
+    cursor = db.cursor() 
+    cursor.execute("CREATE DATABASE game")
+    cursor.execute("USE game") 
+    cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
+
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
@@ -108,7 +124,7 @@ while run:
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
 	# Checking if the small blob has been consumed or not 
-	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	if ((ty == y) or (ty > y and ty < y + rdius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
 		s += 10
 		# radius += 1
 		# r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
@@ -132,3 +148,4 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
+a
