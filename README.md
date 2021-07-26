@@ -9,8 +9,7 @@ pip install pygame
 ``` 
 pip install mysql-connector-python
 ```
-3. ### IMPORTANT 
-   Having the correct host, user, passwd and database for MySQL (further help in the game file) 
+3. MySQL server on local machine
  
 ## SUMMARY: 
 Find and eat the enegry balls to gain score! 
@@ -21,6 +20,6 @@ You can press space to reveal the location of the
 energy ball. (applicable only upto two times per game) 
 
 ## CONTROLS: 
-⬅️ ⬆️ ⬇️ ➡️ -- Arrow keys for movement 
+⬅️ ⬆️ ⬇️ ➡️ -> Arrow keys for movement 
 
-SPACE BAR -- Space bar to use special move 
+SPACE BAR -> Space bar to use special move 
