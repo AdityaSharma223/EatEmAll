@@ -21,10 +21,11 @@ tr, tg, tb = 0, 0, 0
 can = 0 
 #---------------------------------
 
+passgame=""
 #--------ASKING_PASSWORD----------
 
 password=input("Please enter the password for the root user: ") 
-
+passgame=password
 #---------------------------------
 
 #------------SQL_CONNECTION-------
@@ -33,7 +34,7 @@ password=input("Please enter the password for the root user: ")
 try: 
     db = mysql.connector.connect(host="localhost",
             user="root",
-            passwd="{}".format(password),
+            passwd='{}'.format(passgame,),
             database="game"
             )
     cursor = db.cursor()
@@ -46,7 +47,7 @@ try:
 except: 
     db = mysql.connector.connect(host="localhost",
             user="root",
-            passwd="{}".format(password)
+            passwd="{}".format(passgame,)
             )
     cursor = db.cursor() 
     cursor.execute("CREATE DATABASE game")
@@ -71,7 +72,7 @@ try :
 		c = i 
 	avg = su // c # change with (avg = su // i) if error occurs 
 except :  # <--- If the table is empty 
-	avg = 0 
+avg = 0 
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
@@ -148,3 +149,4 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
+	
