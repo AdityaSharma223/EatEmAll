@@ -24,8 +24,8 @@ can = 0
 passgame=""
 #--------ASKING_PASSWORD----------
 
-password=input("Please enter the password for the root user: ") 
-passgame=password
+passgame=input("Please enter the password for the root user: ") 
+
 #---------------------------------
 
 #------------SQL_CONNECTION-------
