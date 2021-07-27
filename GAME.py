@@ -44,7 +44,7 @@ try:
 
 # if no database named "game" is present then it makes one. basically for a new user 
 except: 
-    db = mysel.connector.connect(host="localhost",
+    db = mysql.connector.connect(host="localhost",
             user="root",
             passwd="{}".format(password)
             )
