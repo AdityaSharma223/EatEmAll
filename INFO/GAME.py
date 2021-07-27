@@ -21,10 +21,11 @@ tr, tg, tb = 0, 0, 0
 can = 0 
 #---------------------------------
 
+passgame=""
 #--------ASKING_PASSWORD----------
 
 password=input("Please enter the password for the root user: ") 
-
+passgame=password
 #---------------------------------
 
 #------------SQL_CONNECTION-------
@@ -33,7 +34,7 @@ password=input("Please enter the password for the root user: ")
 try: 
     db = mysql.connector.connect(host="localhost",
             user="root",
-            passwd="{}".format(password),
+            passwd='{}'.format(passgame,),
             database="game"
             )
     cursor = db.cursor()
@@ -44,9 +45,9 @@ try:
 
 # if no database named "game" is present then it makes one. basically for a new user 
 except: 
-    db = mysel.connector.connect(host="localhost",
+    db = mysql.connector.connect(host="localhost",
             user="root",
-            passwd="{}".format(password)
+            passwd="{}".format(passgame,)
             )
     cursor = db.cursor() 
     cursor.execute("CREATE DATABASE game")
@@ -124,7 +125,7 @@ while run:
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
 	# Checking if the small blob has been consumed or not 
-	if ((ty == y) or (ty > y and ty < y + rdius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	if ((ty== y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
 		s += 10
 		# radius += 1
 		# r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
@@ -148,3 +149,4 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
+ 
