@@ -28,7 +28,7 @@ passgame=password
 
 #------------SQL_CONNECTION-------
 
-# trying to connect to an existing database named "game" basically for an existing user 
+# trying to connect to an existing database named "game" for an existing user 
 try: 
     db = mysql.connector.connect(host="localhost",
             user="root",
@@ -41,7 +41,7 @@ try:
     except: 
         except_temp = 0 
 
-# if no database named "game" is present then it makes one. basically for a new user 
+# if no database named "game" is present then it makes one for a new user 
 except: 
     db = mysql.connector.connect(host="localhost",
             user="root",
@@ -134,7 +134,7 @@ while run:
 		Cscore = myfont.render(scoreDisp, False, (255, 255, 255))
 		window.blit(Cscore,(100,130)) # <--- Displaying the current score at the middle of the screen 
 		pygame.display.update()
-		time.sleep(3) # <--- Waiting for 3 seconds before closing the window
+		time.sleep(2) # <--- Waiting for 2 seconds before closing the window
 
 
 pygame.quit()
