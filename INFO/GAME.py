@@ -21,16 +21,14 @@ tr, tg, tb = 0, 0, 0
 can = 0 
 #---------------------------------
 
-passgame=""
 #--------ASKING_PASSWORD----------
-
-passgame=input("Please enter the password for the root user: ") 
-
+password=input("Please enter the password for the root user: ") 
+passgame=password
 #---------------------------------
 
 #------------SQL_CONNECTION-------
 
-# trying to connect to an existing database named "game" basically for an existing user 
+# trying to connect to an existing database named "game" for an existing user 
 try: 
     db = mysql.connector.connect(host="localhost",
             user="root",
@@ -43,7 +41,7 @@ try:
     except: 
         except_temp = 0 
 
-# if no database named "game" is present then it makes one. basically for a new user 
+# if no database named "game" is present then it makes one for a new user 
 except: 
     db = mysql.connector.connect(host="localhost",
             user="root",
@@ -53,7 +51,6 @@ except:
     cursor.execute("CREATE DATABASE game")
     cursor.execute("USE game") 
     cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
-
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
@@ -72,7 +69,7 @@ try :
 		c = i 
 	avg = su // c # change with (avg = su // i) if error occurs 
 except :  # <--- If the table is empty 
-	avg = 0 
+avg = 0 
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
@@ -125,10 +122,8 @@ while run:
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
 	# Checking if the small blob has been consumed or not 
-	if ((ty== y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	if ((ty == y) or (ty > y and ty < y + radius) r (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
 		s += 10
-		# radius += 1
-		# r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 		tx, ty = random.randrange(20, 181, 10), random.randrange(20, 181, 10) # Generating random coordinates for the small blob 
 		pygame.display.update()
 
@@ -139,7 +134,7 @@ while run:
 		Cscore = myfont.render(scoreDisp, False, (255, 255, 255))
 		window.blit(Cscore,(100,130)) # <--- Displaying the current score at the middle of the screen 
 		pygame.display.update()
-		time.sleep(3) # <--- Waiting for 3 seconds before closing the window
+		time.sleep(2) # <--- Waiting for 2 seconds before closing the window
 
 
 pygame.quit()
@@ -149,4 +144,3 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
- 
