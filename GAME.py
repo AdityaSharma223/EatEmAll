@@ -1,4 +1,4 @@
-#------------IMPORTS--------------
+#------------IMPORTS--------------                                                                                            
 import pygame
 import random 
 import mysql.connector
@@ -67,9 +67,9 @@ try :
 		su = i 
 	for i in count:
 		c = i 
-	avg = su // c # change with (avg = su // i) if error occurs 
+	avg = su // c 
 except :  # <--- If the table is empty 
-avg = 0 
+    avg = 0 
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
