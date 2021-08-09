@@ -69,7 +69,7 @@ try :
 		c = i 
 	avg = su // c # change with (avg = su // i) if error occurs 
 except :  # <--- If the table is empty 
-avg = 0 
+    avg = 0 
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
