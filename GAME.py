@@ -103,7 +103,7 @@ while run:
 		x -= velocity
 	if keys[pygame.K_DOWN] and y < sheight - radius:
 		y += velocity
-	if keys[pygame.K_UP] and y >= velocity:
+	f keys[pygame.K_UP] and y >= velocity:
 		y -= velocity
 	if keys[pygame.K_SPACE]: 
 		if can < 2: 
@@ -111,6 +111,8 @@ while run:
 			can += 1 
 			time.sleep(1)
 			pygame.draw.circle(window, (tr, tg, tb), (tx, ty), 5)
+
+
 	window.fill((0,0,0))
 	pygame.draw.circle(window, (tr, tg, tb), (tx, ty), 5) # <--- Drawing the small random blob
 	pygame.draw.circle(window, (r, g, b), (x, y), radius) # <--- Drawing the main blob
