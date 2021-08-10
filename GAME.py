@@ -80,19 +80,20 @@ pygame.display.set_caption("EAT EM' ALL")
 
 #------------PYGAME_LOOP---------------------------------------------
 while run: 
-	tr,tg,tb = 0, 0, 0
 	pygame.time.delay(55)
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT: 
+			run = False 
+
+	tr,tg,tb = 0, 0, 0
 	avgDisp = 'Average expected score: ' + str(avg)
 	scoreDisp = 'Score: ' + str(s)
 	myfont = pygame.font.SysFont('Comic Sans MS', 15)
 	Cscore = myfont.render(scoreDisp, False, (255, 255, 255))
 	Cavg = myfont.render(avgDisp, False, (255,255,255))
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT: 
-			run = False 
-
 	keys = pygame.key.get_pressed()
+
 	'''
 	Movement/Detection keys
 	'''
