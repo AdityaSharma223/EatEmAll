@@ -103,7 +103,7 @@ while run:
 		x -= velocity
 	if keys[pygame.K_DOWN] and y < sheight - radius:
 		y += velocity
-	f keys[pygame.K_UP] and y >= velocity:
+	if keys[pygame.K_UP] and y >= velocity:
 		y -= velocity
 	if keys[pygame.K_SPACE]: 
 		if can < 2: 
