@@ -1,4 +1,4 @@
-#------------IMPORTS--------------                                                                                            
+#------------IMPORTS--------------      
 import pygame
 import random 
 import mysql.connector
@@ -103,7 +103,7 @@ while run:
 		x -= velocity
 	if keys[pygame.K_DOWN] and y < sheight - radius:
 		y += velocity
-	f keys[pygame.K_UP] and y >= velocity:
+	if keys[pygame.K_UP] and y >= velocity:
 		y -= velocity
 	if keys[pygame.K_SPACE]: 
 		if can < 2: 
@@ -124,8 +124,8 @@ while run:
 	if ((ty == y) or (ty > y and ty < y + radius + 20) or (ty < y and ty > y - (radius + 20))) and ((tx == x) or (tx > x and tx < x + radius + 20) or (tx < x and tx > x - (radius +20))):
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
-	# Checking if the small blob has been consumed o not 
-	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	# Checking if the small blob has been consumed or not 
+	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
 		s += 10
 		tx, ty = random.randrange(20, 181, 10), random.randrange(20, 181, 10) # Generating random coordinates for the small blob 
 		pygame.display.update()
@@ -147,5 +147,4 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
-
 
