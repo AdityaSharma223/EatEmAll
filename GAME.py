@@ -1,4 +1,4 @@
-#------------IMPORTS--------------                                                                                            
+#------------IMPORTS--------------      
 import pygame
 import random 
 import mysql.connector
