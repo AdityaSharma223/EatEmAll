@@ -1,35 +1,35 @@
 #------------IMPORTS--------------      
 import pygame
-import random 
+import random
 import mysql.connector
 import time
 #---------------------------------
 
 #------------VARIABLES------------
-s = 0 
-x, y = 150, 150  
+s = 0
+x, y = 150, 150
 tx, ty = random.randrange(20, 281, 10), random.randrange(20, 281, 10)
-velocity = 10 
+velocity = 10
 radius = 10
 run = True
-swidth = 300 
+swidth = 300
 sheight = 300
-scoreSum = 0 
-count = 0 
+scoreSum = 0
+count = 0
 r, g, b = 255, 255, 0
 tr, tg, tb = 0, 0, 0
-can = 0 
+can = 0
 #---------------------------------
 
 #--------ASKING_PASSWORD----------
-password=input("Please enter the password for the root user: ") 
+password=input("Please enter the password for the root user: ")
 passgame=password
 #---------------------------------
 
 #------------SQL_CONNECTION-------
 
 # trying to connect to an existing database named "game" for an existing user 
-try: 
+try:
     db = mysql.connector.connect(host="localhost",
             user="root",
             passwd='{}'.format(passgame,),
@@ -38,16 +38,16 @@ try:
     cursor = db.cursor()
     try: # tries to create a table score if not already present 
         cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
-    except: 
-        except_temp = 0 
+    except:
+        except_temp = 0
 
 # if no database named "game" is present then it makes one for a new user 
-except: 
+except:
     db = mysql.connector.connect(host="localhost",
             user="root",
             passwd="{}".format(passgame,)
             )
-    cursor = db.cursor() 
+    cursor = db.cursor()
     cursor.execute("CREATE DATABASE game")
     cursor.execute("USE game") 
     cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
