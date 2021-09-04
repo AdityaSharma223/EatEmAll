@@ -4,17 +4,17 @@
 1. PyGame installed and in working condition
 ``` 
 pip install pygame
-```
+
 OR (debian based distros only)
-```
+
 sudo apt install python3-pygame
 ```
 2. MySQL connector for python up and running 
 ``` 
 pip install mysql-connector-python
-```
+
 OR (debian based distros only)
-```
+
 sudo apt install python3-mysql.connector
 ```
 3. MySQL server on local machine
