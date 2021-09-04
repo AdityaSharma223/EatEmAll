@@ -119,7 +119,7 @@ while run:
 	window.blit(Cscore,(0,0)) # Displaying the current score at the top left 
 	window.blit(Cavg,(100, 0)) # Displaying the average expected score at the top right
 	pygame.display.update()
-	
+
 	# Checking if the main blob is in the vicinity and changing colours. 
 	if ((ty == y) or (ty > y and ty < y + radius + 20) or (ty < y and ty > y - (radius + 20))) and ((tx == x) or (tx > x and tx < x + radius + 20) or (tx < x and tx > x - (radius +20))):
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
