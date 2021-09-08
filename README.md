@@ -18,14 +18,14 @@ OR (debian based distros only)
 sudo apt install python3-mysql.connector
 ```
 3. MySQL server on local machine
- 
+
 ## SUMMARY: 
-Find and eat the enegry balls to gain score! 
+Find and eat the energy balls to gain score! 
 You will be spawned in a black screen and you have to find the 
 energy ball hidden in the screen, your cursor will 
-start to change colours once near the energy ball. 
+start to change colors once near the energy ball. 
 You can press space to reveal the location of the 
-energy ball. (applicable only upto two times per game) 
+energy ball. (applicable only up to two times per game) 
 
 ## CONTROLS: 
 ⬅️ ⬆️ ⬇️ ➡️ --> Arrow keys for movement 
