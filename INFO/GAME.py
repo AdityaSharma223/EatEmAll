@@ -1,35 +1,35 @@
 #------------IMPORTS--------------      
 import pygame
-import random 
+import random
 import mysql.connector
 import time
 #---------------------------------
 
 #------------VARIABLES------------
-s = 0 
-x, y = 150, 150  
+s = 0
+x, y = 150, 150
 tx, ty = random.randrange(20, 281, 10), random.randrange(20, 281, 10)
-velocity = 10 
+velocity = 10
 radius = 10
 run = True
-swidth = 300 
+swidth = 300
 sheight = 300
-scoreSum = 0 
-count = 0 
+scoreSum = 0
+count = 0
 r, g, b = 255, 255, 0
 tr, tg, tb = 0, 0, 0
-can = 0 
+can = 0
 #---------------------------------
 
 #--------ASKING_PASSWORD----------
-password=input("Please enter the password for the root user: ") 
+password=input("Please enter the password for the root user: ")
 passgame=password
 #---------------------------------
 
 #------------SQL_CONNECTION-------
 
 # trying to connect to an existing database named "game" for an existing user 
-try: 
+try:
     db = mysql.connector.connect(host="localhost",
             user="root",
             passwd='{}'.format(passgame,),
@@ -38,38 +38,38 @@ try:
     cursor = db.cursor()
     try: # tries to create a table score if not already present 
         cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
-    except: 
-        except_temp = 0 
+    except:
+        except_temp = 0
 
 # if no database named "game" is present then it makes one for a new user 
-except: 
+except:
     db = mysql.connector.connect(host="localhost",
             user="root",
             passwd="{}".format(passgame,)
             )
-    cursor = db.cursor() 
+    cursor = db.cursor()
     cursor.execute("CREATE DATABASE game")
-    cursor.execute("USE game") 
+    cursor.execute("USE game")
     cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
 
 su, c = 0, 0
-try : 
+try :
 	cursor.execute("SELECT SUM(score) FROM scores")
 	for i in cursor:
-		scoreSum = i 
+		scoreSum = i
 	cursor.execute("SELECT COUNT(score) from scores")
 	for i in cursor:
-		count = i 
+		count = i
 	for i in scoreSum:
-		su = i 
+		su = i
 	for i in count:
-		c = i 
-	avg = su // c 
+		c = i
+	avg = su // c
 except :  # <--- If the table is empty 
-    avg = 0 
+    avg = 0
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
@@ -79,11 +79,11 @@ pygame.display.set_caption("EAT EM' ALL")
 #------------------------------------------------
 
 #------------PYGAME_LOOP---------------------------------------------
-while run: 
+while run:
 	pygame.time.delay(55)
 	for event in pygame.event.get():
-		if event.type == pygame.QUIT: 
-			run = False 
+		if event.type == pygame.QUIT:
+			run = False
 
 	tr,tg,tb = 0, 0, 0
 	avgDisp = 'Average expected score: ' + str(avg)
@@ -98,17 +98,17 @@ while run:
 	Movement/Detection keys
 	'''
 	if keys[pygame.K_RIGHT] and x < swidth - radius:
-		x += velocity 
+		x += velocity
 	if keys[pygame.K_LEFT] and x >= velocity:
 		x -= velocity
 	if keys[pygame.K_DOWN] and y < sheight - radius:
 		y += velocity
 	if keys[pygame.K_UP] and y >= velocity:
 		y -= velocity
-	if keys[pygame.K_SPACE]: 
-		if can < 2: 
+	if keys[pygame.K_SPACE]:
+		if can < 2:
 			tr, tg, tb = 255, 0, 0
-			can += 1 
+			can += 1
 			time.sleep(1)
 			pygame.draw.circle(window, (tr, tg, tb), (tx, ty), 5)
 
@@ -119,13 +119,13 @@ while run:
 	window.blit(Cscore,(0,0)) # Displaying the current score at the top left 
 	window.blit(Cavg,(100, 0)) # Displaying the average expected score at the top right
 	pygame.display.update()
-	
+
 	# Checking if the main blob is in the vicinity and changing colours. 
 	if ((ty == y) or (ty > y and ty < y + radius + 20) or (ty < y and ty > y - (radius + 20))) and ((tx == x) or (tx > x and tx < x + radius + 20) or (tx < x and tx > x - (radius +20))):
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
 	# Checking if the small blob has been consumed or not 
-	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x an tx < x + radius) or (tx < x and tx > x - radius)):
 		s += 10
 		tx, ty = random.randrange(20, 181, 10), random.randrange(20, 181, 10) # Generating random coordinates for the small blob 
 		pygame.display.update()
@@ -147,4 +147,3 @@ pygame.quit()
 cursor.execute("INSERT INTO scores(score) VALUES(%s)", (s,))
 db.commit()
 #------------------------------------------------
-
