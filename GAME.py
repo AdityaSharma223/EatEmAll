@@ -49,27 +49,27 @@ except:
             )
     cursor = db.cursor()
     cursor.execute("CREATE DATABASE game")
-    cursor.execute("USE game") 
+    cursor.execute("USE game")
     cursor.execute("CREATE TABLE scores (id INT PRIMARY KEY AUTO_INCREMENT, score INT)")
 #---------------------------------
 
 #------------TAKING_THE_AVG_SCORE----------------
 
 su, c = 0, 0
-try : 
+try :
 	cursor.execute("SELECT SUM(score) FROM scores")
 	for i in cursor:
-		scoreSum = i 
+		scoreSum = i
 	cursor.execute("SELECT COUNT(score) from scores")
 	for i in cursor:
-		count = i 
+		count = i
 	for i in scoreSum:
-		su = i 
+		su = i
 	for i in count:
-		c = i 
-	avg = su // c 
+		c = i
+	avg = su // c
 except :  # <--- If the table is empty 
-    avg = 0 
+    avg = 0
 #------------------------------------------------
 
 #------------PYGAME_INITIALISATION---------------
@@ -79,11 +79,11 @@ pygame.display.set_caption("EAT EM' ALL")
 #------------------------------------------------
 
 #------------PYGAME_LOOP---------------------------------------------
-while run: 
+while run:
 	pygame.time.delay(55)
 	for event in pygame.event.get():
-		if event.type == pygame.QUIT: 
-			run = False 
+		if event.type == pygame.QUIT:
+			run = False
 
 	tr,tg,tb = 0, 0, 0
 	avgDisp = 'Average expected score: ' + str(avg)
@@ -98,17 +98,17 @@ while run:
 	Movement/Detection keys
 	'''
 	if keys[pygame.K_RIGHT] and x < swidth - radius:
-		x += velocity 
+		x += velocity
 	if keys[pygame.K_LEFT] and x >= velocity:
 		x -= velocity
 	if keys[pygame.K_DOWN] and y < sheight - radius:
 		y += velocity
 	if keys[pygame.K_UP] and y >= velocity:
 		y -= velocity
-	if keys[pygame.K_SPACE]: 
-		if can < 2: 
+	if keys[pygame.K_SPACE]:
+		if can < 2:
 			tr, tg, tb = 255, 0, 0
-			can += 1 
+			can += 1
 			time.sleep(1)
 			pygame.draw.circle(window, (tr, tg, tb), (tx, ty), 5)
 
@@ -125,7 +125,7 @@ while run:
 		r, g, b = random.randrange(0, 256),random.randrange(0, 256),random.randrange(0, 256)
 
 	# Checking if the small blob has been consumed or not 
-	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)): 
+	if ((ty == y) or (ty > y and ty < y + radius) or (ty < y and ty > y - radius)) and ((tx == x) or (tx > x and tx < x + radius) or (tx < x and tx > x - radius)):
 		s += 10
 		tx, ty = random.randrange(20, 181, 10), random.randrange(20, 181, 10) # Generating random coordinates for the small blob 
 		pygame.display.update()
